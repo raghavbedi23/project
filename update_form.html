@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Restaurant</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <h1>Update Restaurant</h1>
+  
+  <!-- Your form for updating a restaurant -->
+  <form id="updateForm">
+    <label for="restaurantId">Restaurant ID:</label>
+    <input type="text" id="restaurantId" name="restaurantId" required>
+    <button type="button" onclick="fetchData()">Fetch Data</button>
+
+    <div id="updateFields" style="display: none;">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <!-- Other input fields -->
+      <label for="borough">Borough:</label>
+      <input type="text" id="borough" name="borough" required>
+
+      <label for="building">Building:</label>
+      <input type="text" id="building" name="building" required>
+
+      <label for="street">Street:</label>
+      <input type="text" id="street" name="street" required>
+
+      <label for="zipcode">Zipcode:</label>
+      <input type="text" id="zipcode" name="zipcode" required>
+
+      <label for="cuisine">Cuisine:</label>
+      <input type="text" id="cuisine" name="cuisine" required>
+
+      <label for="grade1">Grade 1:</label>
+      <input type="text" id="grade1" name="grades[0][grade]" required>
+      <input type="number" id="score1" name="grades[0][score]" required>
+
+      <!-- Add more grade fields as needed -->
+
+      <button type="submit">Update Restaurant</button>
+    </div>
+  </form>
+
+  <script>
+    async function fetchData() {
+      const restaurantId = document.getElementById('restaurantId').value;
+      const response = await fetch(`/api/restaurants/${restaurantId}`);
+      const data = await response.json();
+
+      if (data) {
+        document.getElementById('updateFields').style.display = 'block';
+        document.getElementById('name').value = data.name;
+        // Set other fields with fetched data
+      } else {
+        alert('Restaurant not found!');
+        document.getElementById('updateFields').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

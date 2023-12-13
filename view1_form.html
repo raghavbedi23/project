@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Restaurant</title>
+</head>
+<body>
+  <h1>View Restaurant by ID</h1>
+  
+  <!-- Form to input the restaurant ID -->
+  <form id="viewRestaurantForm" method="GET">
+    <label for="restaurantId">Restaurant ID:</label>
+    <input type="text" id="restaurantId" name="id" required>
+
+    <button type="submit" onclick="updateFormAction()">View Restaurant</button>
+  </form>
+
+  <script>
+    function updateFormAction() {
+      const restaurantId = document.getElementById('restaurantId').value;
+      const form = document.getElementById('viewRestaurantForm');
+      form.action = `/restaurants/${restaurantId}`;
+    }
+  </script>
+</body>
+</html>

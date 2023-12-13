@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Details</title>
+  <!-- Add your CSS or stylesheets here -->
+  <link rel="stylesheet" href="/styles/restaurantDetails.css">
+</head>
+<body>
+  <h1>Restaurant Details</h1>
+
+  <div class="restaurant-details">
+    <h2>Name: {{ restaurant.name }}</h2>
+    <p>Restaurant ID: {{ restaurant.restaurant_id }}</p>
+    <p>Borough: {{ restaurant.borough }}</p>
+    <p>Cuisine: {{ restaurant.cuisine }}</p>
+    <p>Address: {{ restaurant.address.building }}, {{ restaurant.address.street }}, {{ restaurant.address.zipcode }}</p>
+    
+    <h3>Grades</h3>
+    <ul>
+      {{#each restaurant.grades}}
+        <li>{{ this.grade }} (Score: {{ this.score }})</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <!-- Form for submitting reviews -->
+  <form action="/api/restaurants/{{ restaurant._id }}/reviews" method="post">
+    <label for="rating">Rating:</label>
+    <input type="number" name="rating" required>
+    
+    <label for="comment">Comment:</label>
+    <textarea name="comment" required></textarea>
+    
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <!-- Display existing reviews -->
+  <h2>Reviews:</h2>
+  {{#each restaurant.reviews}}
+    <p>
+      <strong>User: {{ this.user.username }}</strong><br>
+      <span>Rating: {{ this.rating }}</span><br>
+      <span>{{ this.comment }}</span>
+    </p>
+  {{/each}}
+
+  <!-- Add any additional content or styling as needed -->
+
+</body>
+</html>

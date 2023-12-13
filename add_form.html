@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Restaurant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Add Restaurant</h1>
+  
+  <!-- Your form for adding a new restaurant -->
+  <form action="/api/restaurants" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="borough">Borough:</label>
+    <input type="text" id="borough" name="borough" required>
+
+    <label for="building">Building:</label>
+    <input type="text" id="building" name="building" required>
+
+    <label for="street">Street:</label>
+    <input type="text" id="street" name="street" required>
+
+    <label for="zipcode">Zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode" required>
+
+    <label for="cuisine">Cuisine:</label>
+    <input type="text" id="cuisine" name="cuisine" required>
+
+    !-- Grades Details -->
+    <div id="gradesContainer">
+      <div class="grade-fields">
+        <label for="date1">Date:</label>
+        <input type="date" name="date[]" class="grade-date" required>
+        <label for="grade1">Grade:</label>
+        <input type="text" name="grade[]" class="grade-grade" required>
+        <label for="score1">Score:</label>
+        <input type="number" name="score[]" class="grade-score" required>
+      </div>
+    </div>
+
+    <button type="button" id="addGradeBtn">Add Grade</button><br><br>
+
+    <button type="submit">Add Restaurant</button>
+  </form>
+
+  <script>
+    document.getElementById('addGradeBtn').addEventListener('click', function() {
+      const gradesContainer = document.getElementById('gradesContainer');
+      const gradeFields = document.createElement('div');
+      gradeFields.classList.add('grade-fields');
+
+      gradeFields.innerHTML = `
+        <label for="date">Date:</label>
+        <input type="date" name="date[]" class="grade-date" required>
+        <label for="grade">Grade:</label>
+        <input type="text" name="grade[]" class="grade-grade" required>
+        <label for="score">Score:</label>
+        <input type="number" name="score[]" class="grade-score" required>
+      `;
+      gradesContainer.appendChild(gradeFields);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Restaurants</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Add your CSS styles here */
+    .restaurant {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>View Restaurants</h1>
+
+  <!-- Displaying a list of restaurants -->
+  <div id="restaurantsList">
+    <!-- Restaurant details will be inserted here -->
+  </div>
+
+  <script>
+    async function fetchRestaurants() {
+      const response = await fetch('/api/restaurants'); // Assuming this endpoint returns an array of restaurants
+      const restaurants = await response.json();
+
+      const restaurantsList = document.getElementById('restaurantsList');
+
+      restaurants.forEach((restaurant) => {
+        const restaurantDiv = document.createElement('div');
+        restaurantDiv.classList.add('restaurant');
+
+        // Display restaurant details
+        restaurantDiv.innerHTML = `
+          <h2>Name: ${restaurant.name}</h2>
+          <p>Address: ${restaurant.address.building}, ${restaurant.address.street}, ${restaurant.address.zipcode}</p>
+          <p>Cuisine: ${restaurant.cuisine}</p>
+          <p>Grades: 
+            ${restaurant.grades.map(grade => `${grade.grade} (Score: ${grade.score})`).join(', ')}
+          </p>
+          <p>Restaurant ID: ${restaurant.restaurant_id}</p>
+        `;
+
+        restaurantsList.appendChild(restaurantDiv);
+      });
+    }
+
+    // Call fetchRestaurants when the page loads
+    fetchRestaurants();
+  </script>
+</body>
+</html>

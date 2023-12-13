@@ -1,0 +1,15 @@
+<h1>Restaurant Search Results</h1>
+
+{{#each restaurants}}
+  <div class="restaurant">
+    <h2>Name: {{this.name}}</h2>
+    <p>Address: {{this.address.building}}, {{this.address.street}}, {{this.address.zipcode}}</p>
+    <p>Cuisine: {{this.cuisine}}</p>
+    <p>Grades: 
+      {{#each this.grades}}
+        {{this.grade}} (Score: {{this.score}}){{#unless @last}}, {{/unless}}
+      {{/each}}
+    </p>
+    <p>Restaurant ID: {{this.restaurant_id}}</p>
+  </div>
+{{/each}}

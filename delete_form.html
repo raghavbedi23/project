@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Restaurant</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <h1>Delete Restaurant</h1>
+  
+  <!-- Your form for deleting a restaurant -->
+  <label for="restaurantId">Restaurant ID:</label>
+  <input type="text" id="restaurantId" name="restaurantId" required>
+  <button type="button" onclick="deleteRestaurant()">Delete Restaurant</button>
+
+  <script>
+    async function deleteRestaurant() {
+      const restaurantId = document.getElementById('restaurantId').value;
+
+      try {
+        const response = await fetch(`/api/restaurants/${encodeURIComponent(restaurantId)}`, {
+          method: 'DELETE',
+        });
+
+        if (response.status === 204) {
+          alert('Restaurant deleted successfully');
+          // Optionally, perform actions after deletion
+        } else if (response.status === 404) {
+          alert('Restaurant not found');
+        } else {
+          throw new Error('Error deleting restaurant');
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  </script>
+</body>
+</html>

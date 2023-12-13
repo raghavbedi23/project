@@ -1,0 +1,24 @@
+<!-- form.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Search</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Search Restaurants</h1>
+  <form action="/search" method="GET">
+    <label for="page">Page:</label>
+    <input type="number" id="page" name="page" required>
+
+    <label for="perPage">Per Page:</label>
+    <input type="number" id="perPage" name="perPage" required>
+
+    <label for="borough">Borough:</label>
+    <input type="text" id="borough" name="borough" required>
+
+    <button type="submit">Search</button>
+  </form>
+</body>
+</html>

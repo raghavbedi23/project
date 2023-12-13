@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Management System</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <h1>Restaurant Management System</h1>
+  
+  <button onclick="redirectTo('/add')">Add Restaurant</button>
+  <button onclick="redirectTo('/view')">View Restaurants</button>
+  <button onclick="redirectTo('/view1')">View Restaurant by ID</button>
+  <button onclick="redirectTo('/update')">Update Restaurant</button>
+  <button onclick="redirectTo('/delete')">Delete Restaurant</button>
+
+
+  <script>
+    function redirectTo(route) {
+      window.location.href = route;
+    }
+  </script>
+</body>
+</html>
